@@ -1,10 +1,10 @@
 class Coins {
   constructor(image) {
     this.image = image
-    this.x = 800
+    this.x = width
     this.y = (Math.random() * height) / 1.5
-    this.width = 50
-    this.height = 50
+    this.width = 30
+    this.height = 30
   }
 
   draw() {
@@ -16,7 +16,7 @@ class Coins {
     const playerY = playerInfo.y + playerInfo.height / 2
     const coinX = this.x + this.width / 2
     const coinY = this.y + this.height / 2
-    if (dist(coinX, coinY, playerX, playerY) > 25) {
+    if (dist(coinX, coinY, playerX, playerY) > 15) {
       return false
     } else {
       game.player.score += 10
