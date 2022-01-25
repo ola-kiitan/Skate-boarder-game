@@ -22,16 +22,16 @@ h2 {
   align-self: flex-start;
 }
 
-.game-over {
+.game-over,
+.game-won {
   display: none;
-  flex-direction: column;
   position: absolute;
+  top: 400px;
   height: 550px;
-  float: right;
   width: 50%;
   margin-left: 25%;
   text-align: center;
-  margin-right: 0px;
+  margin-right: 25%;
 }
 
 .game-start {

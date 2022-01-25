@@ -30,12 +30,12 @@ class Game {
       {
         src: loadImage('../assets/far-buildings.png'),
         x: 0,
-        speed: 1,
+        speed: 2,
       },
       {
         src: loadImage('../assets/foreground.png'),
         x: 0,
-        speed: 2,
+        speed: 4,
       },
     ]
     this.playerImage = loadImage('assets/WXfG.gif')
@@ -57,6 +57,7 @@ class Game {
   draw() {
     clear()
     document.querySelector('#score').innerText = game.player.score
+
     this.background.draw()
     this.player.draw()
     //start of coin draw

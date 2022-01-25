@@ -11,13 +11,10 @@ function draw() {
   game.draw()
 }
 function keyPressed() {
-  if (keyCode === 34) {
-    game.player.moveDown()
-  }
-  if (keyCode === 33) {
-    game.player.moveUp()
-  }
   if (keyCode === 32) {
     game.player.jump()
+  }
+  if (keyCode === 13 && game.player.score <= 0) {
+    document.location.reload()
   }
 }

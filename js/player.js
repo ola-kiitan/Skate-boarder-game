@@ -21,7 +21,9 @@ class Player {
     if (this.y >= height - this.height) {
       this.y = height - this.height
     }
-
+    setTimeout(function (win) {
+      document.querySelector('.game-won').style.display = 'block'
+    }, 100000)
     image(game.playerImage, this.x, this.y, this.width, this.height)
   }
 }
