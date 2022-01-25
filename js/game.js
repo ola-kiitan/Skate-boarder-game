@@ -6,16 +6,21 @@ class Game {
 
     this.obstacles = []
     this.coins = []
+    // this.sound = ''
   }
 
   constructor() {
     this.backgroundImages
     this.obstacleImages
     this.coinImage
+    this.sound
     // this.lazerImage
   }
 
   preload() {
+    // this.sound = loadSound(
+    //   '../assets/cyberpunk-street-files/music/cyberpunk-street.mp3'
+    // )
     this.backgroundImages = [
       {
         src: loadImage('../assets/back-buildings.png'),
@@ -51,6 +56,7 @@ class Game {
   }
   draw() {
     clear()
+    document.querySelector('#score').innerText = game.player.score
     this.background.draw()
     this.player.draw()
     //start of coin draw
@@ -83,7 +89,7 @@ class Game {
     this.obstacles.forEach(function (obstacle) {
       obstacle.draw()
     })
-    this.obstacles = this.obstacles.filter(function (obstacle) {
+    this.obstacles.forEach(function (obstacle) {
       if (obstacle.collision(game.player)) {
         return false
       } else {

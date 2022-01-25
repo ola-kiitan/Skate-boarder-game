@@ -10,9 +10,23 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-    <title>The Ghost-Rider</title>
+    <title>Skate-boarder game</title>
   </head>
   <body>
+    <h1>The city skater</h1>
+
+    <div class="header">
+      <div class="scorebox">
+        <h1>Score: <span id="score"></span></h1>
+      </div>
+    </div>
+    <div class="game-over">
+      <h1 class="over-message">
+        Game Over!<br />
+        Your High Score: <span class="hiscorefinal"></span><br />
+        press return to skate again
+      </h1>
+    </div>
     <script src="./js/obstacle.js"></script>
     <script src="./js/coin.js"></script>
     <script src="./js/background.js"></script>

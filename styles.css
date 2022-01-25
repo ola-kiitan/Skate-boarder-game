@@ -3,7 +3,45 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   font-family: 'Spartan', sans-serif;
   background-color: rgb(158, 97, 97);
+}
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: beige;
+}
+
+h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: beige;
+}
+.score-box {
+  justify-self: flex-start;
+  align-self: flex-start;
+}
+
+.game-over {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  height: 550px;
+  float: right;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  margin-right: 0px;
+}
+
+.game-start {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 450px;
+  float: right;
+  width: 50%;
+  margin-left: 50%;
+  text-align: right;
+  margin-right: 0px;
 }

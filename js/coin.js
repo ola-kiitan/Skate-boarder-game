@@ -19,7 +19,8 @@ class Coins {
     if (dist(coinX, coinY, playerX, playerY) > 15) {
       return false
     } else {
-      game.player.score += 10
+      game.player.score += 1
+      console.log('game.player.score')
       return true
     }
   }

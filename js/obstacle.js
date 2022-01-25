@@ -15,10 +15,15 @@ class Obstacle {
     const playerY = playerInfo.y + playerInfo.height / 2
     const obstacleX = this.x + this.width / 2
     const obstacleY = this.y + this.height / 2
-    if (dist(obstacleX, obstacleY, playerX, playerY) < playerInfo.width / 2) {
-      console.log('colllision')
+    if (dist(obstacleX, obstacleY, playerX, playerY) > playerInfo.width / 2) {
+      return false
     } else {
-      return game.player.y
+      game.player.y = this.y - 50
+      game.player.score -= 2
+      console.log('collision')
+    }
+    if (game.player.score <= 0) {
+      document.querySelector('.game-over').style.display = 'block'
     }
   }
 }
