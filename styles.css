@@ -1,7 +1,7 @@
 body {
+  display: flex;
   margin: 0;
   padding: 0;
-  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@ h2 {
 .game-won {
   display: none;
   position: absolute;
-  top: 400px;
+  top: 600px;
   height: 550px;
   width: 50%;
   margin-left: 25%;
@@ -35,13 +35,10 @@ h2 {
 }
 
 .game-start {
-  display: flex;
-  flex-direction: column;
+  display: none;
+  justify-content: flex-start;
   position: absolute;
-  height: 450px;
-  float: right;
-  width: 50%;
-  margin-left: 50%;
-  text-align: right;
-  margin-right: 0px;
+  top: 70%;
+  font-size: 1.5rem;
+  color: white;
 }

@@ -2,25 +2,30 @@ class Game {
   setup() {
     this.player = new Player()
     this.background = new Background()
-    // this.lazer = new Lazer()
-
     this.obstacles = []
     this.coins = []
-    // this.sound = ''
+
+    // this.backgroundSound.loop()
   }
 
   constructor() {
     this.backgroundImages
     this.obstacleImages
     this.coinImage
-    this.sound
-    // this.lazerImage
+    this.backgroundSound
+    this.losingScreen
+    this.winningScreen
+    this.stage = 0
   }
 
   preload() {
-    // this.sound = loadSound(
+    // this.backgroundSound = loadSound(
     //   '../assets/cyberpunk-street-files/music/cyberpunk-street.mp3'
     // )
+    this.losingScreen = loadImage('../assets/crash.png')
+    this.winningScreen = loadImage('../assets/startImg.png')
+    this.startingScreen = loadImage('../assets/startImg.png')
+
     this.backgroundImages = [
       {
         src: loadImage('../assets/back-buildings.png'),
@@ -30,12 +35,12 @@ class Game {
       {
         src: loadImage('../assets/far-buildings.png'),
         x: 0,
-        speed: 2,
+        speed: 1,
       },
       {
         src: loadImage('../assets/foreground.png'),
         x: 0,
-        speed: 4,
+        speed: 2,
       },
     ]
     this.playerImage = loadImage('assets/WXfG.gif')
@@ -45,7 +50,6 @@ class Game {
     this.coinImage = loadImage('../assets/Coin1_238_238.png')
     this.coinImageB = loadImage('../assets/Coin3_238_238.png')
     this.coinImageC = loadImage('../assets/Coin6_238_238.png')
-    this.lazerImage = loadImage('../assets/man_kart.png')
 
     // this.obstacleImages = [
     //   { src: loadImage('../assets/taxi_W.png') },
@@ -57,45 +61,93 @@ class Game {
   draw() {
     clear()
     document.querySelector('#score').innerText = game.player.score
+    this.gamePlay()
+    if (this.stage == 0) {
+      this.startScreen()
+    }
 
+    if (this.stage == 1) {
+      this.gamePlay()
+      playMode = true
+    }
+
+    if (this.stage == 2) {
+      this.winScreen()
+    }
+
+    if (this.stage == 3) {
+      this.loseScreen()
+    }
+  }
+
+  gamePlay() {
+    if (playMode) {
+      this.background.draw()
+      this.player.draw()
+      //start of coin draw
+
+      if (frameCount % 100 === 0) {
+        this.coins.push(new Coins(this.coinImage))
+        this.coins.push(new Coins(this.coinImageB))
+        this.coins.push(new Coins(this.coinImageC))
+      }
+      this.coins.forEach(function (coin) {
+        coin.draw()
+      })
+      this.coins = this.coins.filter(function (coin) {
+        if (coin.collision(game.player) || coin.x < 0) {
+          return false
+        } else {
+          return true
+        }
+      })
+      // end of coin draw
+      // start of Obstacle draw
+      if (frameCount % 1500 === 0) {
+        this.obstacles.push(new Obstacle(this.obstacleImages))
+      }
+      if (frameCount % 800 === 0) {
+        this.obstacles.push(new Obstacle(this.obstacleImagesB))
+      }
+      if (frameCount % 300 === 0) {
+        this.obstacles.push(new Obstacle(this.obstacleImagesC))
+      }
+      this.obstacles.forEach(function (obstacle) {
+        obstacle.draw()
+      })
+      this.obstacles.forEach(function (obstacle) {
+        if (obstacle.collision(game.player)) {
+          return false
+        } else {
+          return true
+        }
+      })
+    }
+  }
+  startScreen() {
     this.background.draw()
-    this.player.draw()
-    //start of coin draw
-    if (frameCount % 100 === 0) {
-      this.coins.push(new Coins(this.coinImage))
-      this.coins.push(new Coins(this.coinImageB))
-      this.coins.push(new Coins(this.coinImageC))
-    }
-    this.coins.forEach(function (coin) {
-      coin.draw()
-    })
-    this.coins = this.coins.filter(function (coin) {
-      if (coin.collision(game.player) || coin.x < 0) {
-        return false
-      } else {
-        return true
-      }
-    })
-    // end of coin draw
-    // start of Obstacle draw
-    if (frameCount % 1500 === 0) {
-      this.obstacles.push(new Obstacle(this.obstacleImages))
-    }
-    if (frameCount % 800 === 0) {
-      this.obstacles.push(new Obstacle(this.obstacleImagesB))
-    }
-    if (frameCount % 300 === 0) {
-      this.obstacles.push(new Obstacle(this.obstacleImagesC))
-    }
-    this.obstacles.forEach(function (obstacle) {
-      obstacle.draw()
-    })
-    this.obstacles.forEach(function (obstacle) {
-      if (obstacle.collision(game.player)) {
-        return false
-      } else {
-        return true
-      }
-    })
+    this.stage = 0
+    image(this.startingScreen, 200, 70, 600, 400)
+    document.querySelector('.game-start').style.display = 'flex'
+  }
+
+  winScreen() {
+    this.background.draw()
+    image(this.winningScreen, 250, 100, width / 2, height / 2)
+
+    // fill(33, 90, 126)
+    // stroke(33, 90, 126)
+    // text('You made it home', 500, height - 80)
+  }
+
+  loseScreen() {
+    this.background.draw()
+    image(this.losingScreen, 250, 100, width / 2, height / 2)
+    // stroke(33, 90, 126)
+    // fill(33, 90, 126)
+    // text('You crashed', 500, height - 80)
+    // this.backgroundMusic.stop()
+    // this.eatingSound.stop()
+    // this.laserSound.stop()
   }
 }

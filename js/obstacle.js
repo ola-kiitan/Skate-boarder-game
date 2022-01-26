@@ -19,10 +19,14 @@ class Obstacle {
       return false
     } else {
       game.player.y = this.y - 50
-      game.player.score -= 2
+      game.player.score -= 0.5
+
       console.log('collision')
     }
     if (game.player.score <= 0) {
+      game.stage = 3
+      playMode = false
+      game.player.score = 0
       document.querySelector('.game-over').style.display = 'block'
     }
   }
