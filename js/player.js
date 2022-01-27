@@ -7,7 +7,6 @@ class Player {
     this.y = height - this.height
     this.gravity = 0.2
     this.velocity = 0
-    this.gameWon = false
   }
   jump() {
     this.velocity = -8
@@ -16,7 +15,7 @@ class Player {
   draw() {
     this.velocity += this.gravity
     this.y += this.velocity
-    this.y = constrain(this.y, 50, height - this.height)
+    this.y = constrain(this.y, 30, height - this.height)
 
     if (this.y >= height - this.height) {
       this.y = height - this.height

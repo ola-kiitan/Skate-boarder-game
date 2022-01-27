@@ -7,10 +7,6 @@ function preload() {
 function setup() {
   createCanvas(1020, 680)
   scroll = 0
-  if (game.stage == 0) {
-    text('The City skater')
-  }
-
   game.setup()
 }
 function draw() {

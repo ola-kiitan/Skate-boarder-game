@@ -4,8 +4,9 @@ class Game {
     this.background = new Background()
     this.obstacles = []
     this.coins = []
+    this.birds = []
 
-    // this.backgroundSound.loop()
+    this.backgroundSound.loop()
   }
 
   constructor() {
@@ -15,13 +16,14 @@ class Game {
     this.backgroundSound
     this.losingScreen
     this.winningScreen
+    this.birdImages
     this.stage = 0
   }
 
   preload() {
-    // this.backgroundSound = loadSound(
-    //   '../assets/cyberpunk-street-files/music/cyberpunk-street.mp3'
-    // )
+    this.backgroundSound = loadSound(
+      '../assets/cyberpunk-street-files/music/cyberpunk-street.mp3'
+    )
     this.losingScreen = loadImage('../assets/crash.png')
     this.winningScreen = loadImage('../assets/startImg.png')
     this.startingScreen = loadImage('../assets/startImg.png')
@@ -35,39 +37,35 @@ class Game {
       {
         src: loadImage('../assets/far-buildings.png'),
         x: 0,
-        speed: 1,
+        speed: 2,
       },
       {
         src: loadImage('../assets/foreground.png'),
         x: 0,
-        speed: 2,
+        speed: 4,
       },
     ]
     this.playerImage = loadImage('assets/WXfG.gif')
     this.obstacleImages = loadImage('../assets/ambulance_W.png')
     this.obstacleImagesB = loadImage('../assets/police_W.png')
     this.obstacleImagesC = loadImage('../assets/taxi_W.png')
+    this.birdImages = loadImage('../assets/bird.gif')
     this.coinImage = loadImage('../assets/Coin1_238_238.png')
     this.coinImageB = loadImage('../assets/Coin3_238_238.png')
     this.coinImageC = loadImage('../assets/Coin6_238_238.png')
-
-    // this.obstacleImages = [
-    //   { src: loadImage('../assets/taxi_W.png') },
-    //   { src: loadImage('../assets/raceFuture_W.png') },
-    //   { src: loadImage('../assets/sedan_W.png') },
-    //   { src: loadImage('../assets/ambulance_W.png') },
-    // ]
   }
   draw() {
     clear()
     document.querySelector('#score').innerText = game.player.score
     this.gamePlay()
+
     if (this.stage == 0) {
       this.startScreen()
     }
 
     if (this.stage == 1) {
       this.gamePlay()
+      this.player.draw()
       playMode = true
     }
 
@@ -77,13 +75,15 @@ class Game {
 
     if (this.stage == 3) {
       this.loseScreen()
+      clearTimeout()
     }
   }
 
   gamePlay() {
     if (playMode) {
       this.background.draw()
-      this.player.draw()
+
+      document.querySelector('.game-start').style.display = 'none'
       //start of coin draw
 
       if (frameCount % 100 === 0) {
@@ -122,32 +122,36 @@ class Game {
           return true
         }
       })
+      // start of bird draw
+      if (frameCount % 300 === 0) {
+        this.birds.push(new Birds(this.birdImages))
+      }
+      this.birds.forEach(function (bird) {
+        bird.draw()
+      })
+      this.birds.forEach(function (bird) {
+        if (bird.collision(game.player)) {
+          return false
+        } else {
+          return true
+        }
+      })
     }
   }
   startScreen() {
     this.background.draw()
     this.stage = 0
     image(this.startingScreen, 200, 70, 600, 400)
-    document.querySelector('.game-start').style.display = 'flex'
+    document.querySelector('.game-start').style.display = 'block'
   }
 
   winScreen() {
     this.background.draw()
     image(this.winningScreen, 250, 100, width / 2, height / 2)
-
-    // fill(33, 90, 126)
-    // stroke(33, 90, 126)
-    // text('You made it home', 500, height - 80)
   }
 
   loseScreen() {
     this.background.draw()
     image(this.losingScreen, 250, 100, width / 2, height / 2)
-    // stroke(33, 90, 126)
-    // fill(33, 90, 126)
-    // text('You crashed', 500, height - 80)
-    // this.backgroundMusic.stop()
-    // this.eatingSound.stop()
-    // this.laserSound.stop()
   }
 }

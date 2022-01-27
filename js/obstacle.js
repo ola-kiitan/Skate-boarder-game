@@ -32,24 +32,12 @@ class Obstacle {
   }
 }
 
-// class Lazer {
-//   constructor() {
-//     this.r = 20
-//     this.x = width
-//     this.y = random(300, height - 10 - this.r)
-//     this.width = this.r
-//     this.height = this.r
-//     this.speed = 20
-//   }
-
-//   move() {
-//     this.x -= this.speed * levelSpeed
-//   }
-
-//   draw() {}
-
-//   show() {
-//     image(game.lazer, this.x, this.y)
-//     fill(255)
-//   }
-// }
+class Birds extends Obstacle {
+  constructor(image) {
+    super(image)
+    this.x = width
+    this.y = (Math.random() * height) / 1.3
+    this.width = 100
+    this.height = 100
+  }
+}
