@@ -17,10 +17,6 @@ h2 {
   font-family: 'Orbitron', sans-serif;
   color: beige;
 }
-.score-box {
-  justify-self: flex-start;
-  align-self: flex-start;
-}
 
 .game-over,
 .game-won {

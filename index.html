@@ -9,14 +9,25 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js" defer></script>
-  <script defer src=https://cdn.JsDelivr.net/npm/p5/lib/addons/p5.sound.min.js></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"
+      defer
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"
+    ></script>
+
     <title>Skate-boarder game</title>
   </head>
   <body>
-    <h1>The city skater</h1>
+    <div class="header">
+      <h1>The city skater</h1>
+      <div class="scorebox">
+        <h2>Score: <span id="score"></span></h2>
+      </div>
+    </div>
     <div class="game-start">
-      <!-- <img src="./assets/startImg.png" alt="start-image" /> -->
       <div>
         <p>Press enter to start the game</p>
         <p>Press space to jump over cars</p>
@@ -24,11 +35,6 @@
       </div>
     </div>
 
-    <div class="header">
-      <div class="scorebox">
-        <h1>Score: <span id="score"></span></h1>
-      </div>
-    </div>
     <div class="game-over">
       <h1 class="over-message">
         Game Over!<br />
@@ -44,11 +50,11 @@
       </h1>
     </div>
 
-    <script src="js/obstacle.js" defer></script>
-    <script src="js/coin.js" defer></script>
-    <script src="js/background.js" defer></script>
-    <script src="js/player.js" defer></script>
-    <script src="js/game.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="js/obstacle.js"></script>
+    <script src="js/coin.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

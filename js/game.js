@@ -5,7 +5,7 @@ class Game {
     this.obstacles = []
     this.coins = []
     this.birds = []
-    this.backgroundSound.play()
+    this.backgroundSound.loop()
   }
 
   constructor() {
@@ -60,7 +60,6 @@ class Game {
 
     if (this.stage == 0) {
       this.startScreen()
-      this.backgroundSound.stop()
     }
 
     if (this.stage == 1) {
@@ -76,14 +75,13 @@ class Game {
     if (this.stage == 3) {
       this.loseScreen()
       clearTimeout()
-      this.backgroundSound.stop()
+      playMode = false
     }
   }
 
   gamePlay() {
     if (playMode) {
       this.background.draw()
-
       document.querySelector('.game-start').style.display = 'none'
       //start of coin draw
 
@@ -124,7 +122,7 @@ class Game {
         }
       })
       // start of bird draw
-      if (frameCount % 300 === 0) {
+      if (frameCount % 200 === 0) {
         this.birds.push(new Birds(this.birdImages))
       }
       this.birds.forEach(function (bird) {
@@ -144,15 +142,18 @@ class Game {
     this.stage = 0
     image(this.startingScreen, 200, 70, 600, 400)
     document.querySelector('.game-start').style.display = 'block'
+    this.backgroundSound.stop()
   }
 
   winScreen() {
     this.background.draw()
     image(this.winningScreen, 250, 100, width / 2, height / 2)
+    this.backgroundSound.stop()
   }
 
   loseScreen() {
     this.background.draw()
     image(this.losingScreen, 250, 100, width / 2, height / 2)
+    this.backgroundSound.stop()
   }
 }

@@ -18,6 +18,7 @@ function keyPressed() {
   }
   if (keyCode === 13) {
     game.stage = 1
+    game.backgroundSound.play()
     // document.location.reload()
   }
 
