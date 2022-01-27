@@ -5,8 +5,7 @@ class Game {
     this.obstacles = []
     this.coins = []
     this.birds = []
-
-    this.backgroundSound.loop()
+    this.backgroundSound.play()
   }
 
   constructor() {
@@ -22,37 +21,37 @@ class Game {
 
   preload() {
     this.backgroundSound = loadSound(
-      '../assets/cyberpunk-street-files/music/cyberpunk-street.mp3'
+      'assets/cyberpunk-street-files/music/cyberpunk-street.mp3'
     )
-    this.losingScreen = loadImage('../assets/crash.png')
-    this.winningScreen = loadImage('../assets/startImg.png')
-    this.startingScreen = loadImage('../assets/startImg.png')
+    this.losingScreen = loadImage('assets/crash.png')
+    this.winningScreen = loadImage('assets/startImg.png')
+    this.startingScreen = loadImage('assets/startImg.png')
 
     this.backgroundImages = [
       {
-        src: loadImage('../assets/back-buildings.png'),
+        src: loadImage('assets/back-buildings.png'),
         x: 0,
         speed: 0,
       },
       {
-        src: loadImage('../assets/far-buildings.png'),
+        src: loadImage('assets/far-buildings.png'),
         x: 0,
         speed: 2,
       },
       {
-        src: loadImage('../assets/foreground.png'),
+        src: loadImage('assets/foreground.png'),
         x: 0,
         speed: 4,
       },
     ]
     this.playerImage = loadImage('assets/WXfG.gif')
-    this.obstacleImages = loadImage('../assets/ambulance_W.png')
-    this.obstacleImagesB = loadImage('../assets/police_W.png')
-    this.obstacleImagesC = loadImage('../assets/taxi_W.png')
-    this.birdImages = loadImage('../assets/bird.gif')
-    this.coinImage = loadImage('../assets/Coin1_238_238.png')
-    this.coinImageB = loadImage('../assets/Coin3_238_238.png')
-    this.coinImageC = loadImage('../assets/Coin6_238_238.png')
+    this.obstacleImages = loadImage('assets/ambulance_W.png')
+    this.obstacleImagesB = loadImage('assets/police_W.png')
+    this.obstacleImagesC = loadImage('assets/taxi_W.png')
+    this.birdImages = loadImage('assets/bird.gif')
+    this.coinImage = loadImage('assets/Coin1_238_238.png')
+    this.coinImageB = loadImage('assets/Coin3_238_238.png')
+    this.coinImageC = loadImage('assets/Coin6_238_238.png')
   }
   draw() {
     clear()
@@ -61,6 +60,7 @@ class Game {
 
     if (this.stage == 0) {
       this.startScreen()
+      this.backgroundSound.stop()
     }
 
     if (this.stage == 1) {
@@ -76,6 +76,7 @@ class Game {
     if (this.stage == 3) {
       this.loseScreen()
       clearTimeout()
+      this.backgroundSound.stop()
     }
   }
 

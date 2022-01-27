@@ -20,6 +20,7 @@ function keyPressed() {
     game.stage = 1
     // document.location.reload()
   }
+
   if (keyCode === 8) {
     document.location.reload()
   }
